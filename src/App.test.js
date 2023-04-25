@@ -1,6 +1,4 @@
-import { render, screen } from '@testing-library/jest-dom'
-
-// '@testing-library/react';
+import { render, screen } from '@testing-library/react'
 
 import App from './App'
 
