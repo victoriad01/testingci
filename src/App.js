@@ -17,6 +17,7 @@ function App() {
         >
           Learn React, GitHub Pages and Git Action.
         </a>
+        <h3>For now, you are welcome!</h3>
       </header>
     </div>
   )
