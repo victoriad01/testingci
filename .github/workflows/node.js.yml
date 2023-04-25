@@ -1,7 +1,11 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: Node.js CI
+name: TESTCI
+env: 
+  SCREENER_API_KEY: ${{secrets.SCREENER_API_KEY}}
+  SAUCE_USERNAME: ${{secrets.SAUCE_USERNAME}}
+  SAUCE_ACCESS_KEY: ${{secrets.SAUCE_ACCESS_KEY}}
 
 on:
   push:
@@ -26,6 +30,31 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - name: Install dependencies ***
+      run: |
+        cd testingci
+        npm ci 
+    - name: Build the app ***
+      run: | 
+        cd testingci
+        npm run build
+    - name: Run components test ***
+      run: |
+        cd testingci
+        npm run test
+    - name: Start the app ***
+      run: |
+        cd testingci
+        npm start & 
+        npx wait-on --timeout 60000
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
